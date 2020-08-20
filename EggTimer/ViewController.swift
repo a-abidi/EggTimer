@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     let mediumTime = 7
     let hardTime = 12
     
+    var timer = Timer()
+    
     let eggTimes = ["Soft": 5, "Medium": 7, "Hard": 12]
     
     @IBAction func hardnessSelected(_ sender: UIButton) {
@@ -21,13 +23,12 @@ class ViewController: UIViewController {
     }
     
     func startTimer(minutes: Int) {
+        timer.invalidate()
         var seconds = minutes * 60
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
             if seconds > 0 {
                 print ("\(seconds) seconds")
                 seconds -= 1
-            } else {
-                Timer.invalidate()
             }
         }
     }
